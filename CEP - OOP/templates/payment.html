@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="payment-container">
+    <div class="payment-card">
+        <h1 class="payment-title">Complete Your Booking</h1>
+        <div class="car-summary">
+            <img src="{{ car.img_link }}" alt="{{ car.name }}">
+            <h2>{{ car.name }} - {{ car.brand }}</h2>
+            <p class="price">Price per day: ${{ car.price_per_day }}</p>
+
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="flash-message {{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+            {% endwith %}
+            
+        </div>
+
+        <form class="payment-form" method="POST" action="{{ url_for('process_payment', car_id=car.car_id) }}">
+            <div class="form-group">
+                <label>Number of Days (Max 30)</label>
+                <input type="number" name="days" id="days" min="1" max="30" required 
+                       oninput="calculateTotal({{ car.price_per_day }})">
+            </div>
+
+            <div class="form-group">
+                <label>Delivery Address</label>
+                <textarea name="address" required>{{ current_user.address if current_user else '' }}</textarea>
+            </div>
+
+            <div class="payment-summary">
+                <div class="summary-item">
+                    <span>Daily Rate:</span>
+                    <span>${{ car.price_per_day }}</span>
+                </div>
+                <div class="summary-item">
+                    <span>Number of Days:</span>
+                    <span id="days-display">1</span>
+                </div>
+                <div class="summary-item total">
+                    <span>Total Rental Cost:</span>
+                    <span id="total">${{ car.price_per_day }}</span>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-pay">Confirm Payment</button>
+        </form>
+    </div>
+</div>
+
+<script>
+function calculateTotal(pricePerDay) {
+    const days = document.getElementById('days').value;
+    document.getElementById('days-display').textContent = days;
+    document.getElementById('total').textContent = '$' + (pricePerDay * days).toFixed(2);
+}
+</script>
+{% endblock %}

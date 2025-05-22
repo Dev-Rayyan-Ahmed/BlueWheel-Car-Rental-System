@@ -1,0 +1,192 @@
+/* static/styles.css */
+:root {
+    --primary-blue: #4A90E2;
+    --secondary-blue: #E3F2FD;
+    --dark-blue: #1A237E;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    background-color: white;
+}
+
+/* Navigation Bar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 5%;
+    background-color: var(--primary-blue);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* Contact Page Styles */
+.contact-section {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2rem;
+}
+
+.contact-form {
+    background-color: var(--secondary-blue);
+    padding: 2rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.form-group textarea {
+    height: 150px;
+    resize: vertical;
+}
+
+.contact-info {
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* Hero Section */
+.hero {
+    height: 70vh;
+    background: linear-gradient(rgba(74, 144, 226, 0.8), rgba(74, 144, 226, 0.8)),
+                url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1950');
+    background-size: cover;
+    display: flex;
+    align-items: flex-start; /* Changed from 'center' to 'flex-start' */
+    justify-content: center;
+    text-align: center;
+    color: white;
+    padding-top: 150px; /* Added to push content down */
+    padding-bottom: 2rem;
+}
+
+/* Add margin to the button specifically */
+.hero .btn {
+    margin-top: 30px; /* Adjust this value as needed (e.g., 20px, 40px) */
+}
+
+.card-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem; /* adds vertical spacing between child elements */
+}
+
+.logo {
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    height: 60px;
+    width: auto;
+}
+
+/* TESTING BELOW */
+
+.cars-container {
+  padding: 40px 60px;
+  background-color: #f8f9fa;
+  min-height: 100vh;
+}
+
+.cars-container h1 {
+  text-align: center;
+  font-size: 36px;
+  margin-bottom: 30px;
+  color: #222;
+}
+
+.car-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 30px;
+}
+
+.car-card {
+  background-color: #fff;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease;
+}
+
+.car-card:hover {
+  transform: scale(1.02);
+}
+
+.car-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.car-info {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.car-info h2 {
+  font-size: 22px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.car-info ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 14px;
+  color: #555;
+}
+
+.car-info ul li {
+  margin-bottom: 6px;
+}
+
+.rent-btn {
+  align-self: flex-start;
+  margin-top: 15px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.rent-btn:hover {
+  background-color: #0056b3;
+}

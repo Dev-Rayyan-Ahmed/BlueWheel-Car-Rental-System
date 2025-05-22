@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="contact-section" style="background-color: #eaf3fb; padding: 60px 20px; text-align: center;">
+        <h1 style="color: #4a90e2;">Contact <strong>BlueWheels</strong></h1>
+        <p style="font-size: 18px; max-width: 700px; margin: 0 auto 30px;">
+            Have questions or want to book a ride? Fill out the form below.
+            You can also <strong>request a specific car model</strong> by mentioning it in your message.
+        </p>
+        
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="flash-message {{ category }}">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+        {% endwith %}
+
+        <div class="contact-form" style="max-width: 600px; margin: 0 auto; background-color: white; padding: 30px; border-radius: 10px; box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);">
+            <form method="POST" action="{{ url_for('contact') }}">
+                <div class="form-group" style="margin-bottom: 20px; text-align: left;">
+                    <label for="name" style="font-weight: bold;">Name:</label>
+                    <input type="text" id="name" name="name" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+                </div>
+                <div class="form-group" style="margin-bottom: 20px; text-align: left;">
+                    <label for="email" style="font-weight: bold;">Email:</label>
+                    <input type="email" id="email" name="email" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+                </div>
+                <div class="form-group" style="margin-bottom: 20px; text-align: left;">
+                    <label for="message" style="font-weight: bold;">Message:</label>
+                    <textarea id="message" name="message" required rows="5" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;"></textarea>
+                </div>
+                <button type="submit" class="btn" style="background-color: #4a90e2; color: white; border: none; padding: 12px 25px; border-radius: 5px; cursor: pointer;">
+                    Send Message
+                </button>
+                
+            </form>
+        </div>
+
+        <div class="contact-info" style="margin-top: 40px; font-size: 16px; color: #333;">
+            <p>Email: <a href="mailto:info@bluewheels.com" style="color: #4a90e2;">info@bluewheels.com</a></p>
+            <p>Phone: <a href="tel:+15551234567" style="color: #4a90e2;">+1 (555) 123-4567</a></p>
+        </div>
+    </div>
+{% endblock %}

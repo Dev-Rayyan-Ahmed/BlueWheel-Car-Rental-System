@@ -1,0 +1,59 @@
+<!-- templates/manage_cars.html -->
+{% extends "base.html" %}
+
+{% block content %}
+<div class="management-container">
+    <div class="management-actions">
+        <a href="{{ url_for('add_car') }}" class="btn btn-large">Add New Car</a>
+        <a href="{{ url_for('delete_car_page') }}" class="btn btn-large btn-danger">Delete Car</a>
+    </div>
+
+    <div class="cars-grid">
+        {% for car in cars %}
+        <div class="car-tile">
+            <img src="{{ car[12] }}" alt="{{ car[1] }}">
+            <div class="car-info">
+                <h3>{{ car[1] }}</h3>
+                <p>{{ car[2] }} • {{ car[4] }} PKR/day</p>
+                <p>Seats: {{ car[5] }} • Fuel: {{ car[6] }}</p>
+                <div class="status {% if car[14] %}available{% else %}booked{% endif %}">
+                    {% if car[14] %}Available{% else %}Booked{% endif %}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<!-- Delete Car Modal -->
+<div id="deleteModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="hideDeleteModal()">&times;</span>
+        <h3>Delete Car</h3>
+        <form action="{{ url_for('delete_car') }}" method="POST">
+            <div class="form-group">
+                <label>Car ID</label>
+                <input type="text" name="car_id" required>
+            </div>
+            <button type="submit" class="btn btn-danger">Confirm Delete</button>
+        </form>
+    </div>
+</div>
+
+<script>
+function showDeleteModal() {
+    document.getElementById('deleteModal').style.display = 'block';
+}
+
+function hideDeleteModal() {
+    document.getElementById('deleteModal').style.display = 'none';
+}
+
+// Close modal when clicking outside
+window.onclick = function(event) {
+    if (event.target.className === 'modal') {
+        event.target.style.display = 'none';
+    }
+}
+</script>
+{% endblock %}

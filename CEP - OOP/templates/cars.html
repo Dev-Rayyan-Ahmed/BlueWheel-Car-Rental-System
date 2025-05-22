@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="cars-container">
+    <div class = "section-title" >
+        <h1>Available Cars</h1>
+    </div>
+    <div class="car-grid">
+        {% for car in cars %}
+        <div class="car-card">
+            <a href="{{ url_for('car_details', car_id=car.car_id) }}" class="car-link">
+                <img src="{{ car.img_link }}" alt="{{ car.name }}">
+                <div class="car-info">
+                    <h2>{{ car.name }}</h2>
+                    <p class="brand">{{ car.brand }}</p>
+                    <p class="price">Rent: {{ car.price_per_day }}$/Day</p>
+                </div>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

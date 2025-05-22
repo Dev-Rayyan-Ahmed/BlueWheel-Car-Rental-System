@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="account-container">
+    <h2>Welcome, {{ user.name }}</h2>
+    
+    <!-- Existing Account Info -->
+    <div class="account-info">
+        <div class="info-card">
+            <h3>Account Details</h3>
+            <p><strong>License:</strong> {{ user.license }}</p>
+            <p><strong>Email:</strong> {{ user.email }}</p>
+            <p><strong>Address:</strong> {{ user.address }}</p>
+        </div>
+        
+        <div class="wallet-card">
+            <h3>Wallet Balance</h3>
+            <p class="balance">${{ "%.2f"|format(user.balance) }}</p>
+            <button class="btn" onclick="document.getElementById('addBalanceModal').style.display='block'">
+                Add Balance
+            </button>
+        </div>
+    </div>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        {% for category, message in messages %}
+            <div class="flash-message {{ category }}">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+    {% endwith %}
+
+    <!-- Rental Information -->
+    {% if rented_car %}
+    <div class="rental-section">
+        <h3 class="rental-heading">You can only rent one Car at a time, Rented Car Info:</h3>
+        <div class="rental-card">
+            <div class="car-image-a" style="background-image: url('{{ rented_car.img_link }}')"></div>
+            <div class="car-details-a">
+                <h4>{{ rented_car.name }}</h4>
+                <div class="car-specs-a">
+                    <p><strong>Brand:</strong> {{ rented_car.brand }}</p>
+                    <p><strong>Amount:</strong> ${{booking.total_price}}</p>
+                    <p><strong>Fuel Type:</strong> {{ rented_car.fuel_type }}</p>
+                    <p><strong>Seats:</strong> {{ rented_car.seating_capacity }}</p>
+                </div>
+                <a href="{{ url_for('add_review', car_id=rented_car.car_id) }}" class="btn btn-review">
+                    Add Review
+                </a>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</div>
+
+<!-- Add Balance Modal -->
+<div id="addBalanceModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="document.getElementById('addBalanceModal').style.display='none'">&times;</span>
+        <h3>Add Balance</h3>
+        
+        <form method="POST" action="{{ url_for('add_balance') }}">
+            <div class="form-group">
+                <label>Amount ($)</label>
+                <input type="number" name="amount" min="1" step="0.01" required>
+            </div>
+            
+            <div class="payment-methods">
+                <div class="payment-option">
+                    <input type="radio" id="easypaisa" name="payment_method" value="easypaisa" checked>
+                    <label for="easypaisa">
+                        <img src="https://webdoc.com.pk/wp-content/uploads/2023/04/easypaisa.png" alt="EasyPaisa">
+                    </label>
+                </div>
+                
+                <div class="payment-option">
+                    <input type="radio" id="paypal" name="payment_method" value="paypal">
+                    <label for="paypal">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Paypal_2014_logo.png" alt="PayPal">
+                    </label>
+                </div>
+            </div>
+            
+            <button type="submit" class="btn">Proceed to Payment</button>
+        </form>
+    </div>
+</div>
+
+
+<script>
+// Existing modal handling script
+window.onclick = function(event) {
+    if (event.target == document.getElementById('addBalanceModal')) {
+        document.getElementById('addBalanceModal').style.display = 'none';
+    }
+}
+</script>
+{% endblock %}

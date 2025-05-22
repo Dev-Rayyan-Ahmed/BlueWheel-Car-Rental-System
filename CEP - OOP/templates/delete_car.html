@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="delete-wrapper">
+    <div class="section-title">
+        <h2 class="delete-header with-underline">Delete Car</h2>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="flash-message {{ category }}">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+        {% endwith %}
+        
+    </div>
+
+    
+
+    <form class="delete-form" method="POST" action="{{ url_for('delete_car') }}">
+        <div class="input-group">
+            <label class="input-label">Car ID</label>
+            <input type="text" name="car_id" class="input-box" required>
+        </div>
+        <div class="button-group">
+            <button type="submit" class="btn-delete">Confirm Delete</button>
+            <a href="{{ url_for('admin_dashboard') }}" class="btn-cancel">Cancel</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

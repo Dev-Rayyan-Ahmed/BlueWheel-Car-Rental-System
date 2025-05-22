@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="admin-bookings-container">
+    <h2>Manage Active Bookings</h2>
+    
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    
+    <div class="admin-bookings-grid">
+        {% for rental in rentals %}
+        <div class="admin-booking-card">
+            <div class="admin-car-image" 
+                 style="background-image: url('{{ rental.img_link }}')"></div>
+            
+            <div class="admin-booking-details">
+                <h3 class="admin-car-name">{{ rental.brand }} {{ rental.name }}</h3>
+                
+                <div class="admin-booking-info">
+                    <p><strong>Rental ID:</strong> {{ rental.rental_id }}</p>
+                    <p><strong>Booked By:</strong> {{ rental.customer_name }}</p>
+                    <p><strong>License No:</strong> {{ rental.license_no }}</p>
+                    <p><strong>Duration:</strong> {{ rental.no_of_days }} days</p>
+                    <p><strong>Total Amount:</strong> ${{ rental.total_price }}</p>
+                    <p><strong>Rental Date:</strong> {{ rental.rental_date.strftime('%Y-%m-%d') }}</p>
+                </div>
+                
+                <form method="POST" action="{{ url_for('mark_returned', rental_id=rental.rental_id) }}">
+                    <button type="submit" class="admin-return-btn">
+                        Mark as Returned
+                    </button>
+                </form>
+            </div>
+        </div>
+        {% else %}
+        <p class="admin-no-bookings">No active bookings found</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

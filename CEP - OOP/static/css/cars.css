@@ -1,0 +1,49 @@
+/* in your static CSS file (e.g. static/css/cars.css) */
+.carousel-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.5rem;
+  }
+  .arrow-btn {
+    background: transparent;
+    border: none;
+    font-size: 2rem;
+    color: #5b8fd1;      /* your blue theme */
+    cursor: pointer;
+  }
+  .cars-carousel {
+    display: flex;
+    gap: 1rem;
+    overflow: hidden;
+  }
+  .car-card {
+    flex: 0 0 200px;
+    text-align: center;
+    padding: .5rem;
+    border-radius: .5rem;
+    transition: transform .2s;
+  }
+  .car-card.selected {
+    border: 3px solid #1e3a8a;  /* darker blue */
+    transform: scale(1.05);
+  }
+  .details-panel {
+    display: flex;
+    gap: 2rem;
+    padding: 1rem;
+    border: 2px solid #1e3a8a;
+    border-radius: .5rem;
+    background: #f0f4ff;
+  }
+  .details-img img {
+    max-width: 300px;
+    border-radius: .5rem;
+  }
+  .details-info ul {
+    list-style: none;
+    padding: 0;
+  }
+  .details-info li {
+    margin-bottom: .5rem;
+  }
+  

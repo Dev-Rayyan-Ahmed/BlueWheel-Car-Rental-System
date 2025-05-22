@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="car-details-background">
+    <div class="car-details-container">
+        <div class="car-details-modal">
+            <div class="car-images">
+                <img src="{{ car.img_link }}" alt="{{ car.name }}">
+            </div>
+            <div class="car-specs">
+                <h1>{{ car.name }}</h1>
+                <h2 class="brand">{{ car.brand }}</h2>
+
+                <div class="specs-grid">
+                    {% for key, value in car.to_dict().specs.items() %}
+                    <div class="spec-item">
+                        <span class="spec-key">{{ key }}:</span>
+                        <span class="spec-value">{{ value }}</span>
+                    </div>
+                    {% endfor %}
+                </div>
+                
+                <div class="action-buttons">
+                    <a href="{{ url_for('cars') }}" class="btn btn-back">Back to Cars</a>
+                    <button class="btn btn-reviews" onclick="showReviews()">See Reviews</button>
+                    {% if 'user' in session %}
+                        <a href="{{ url_for('payment', car_id=car.car_id) }}" class="btn btn-rent">Rent Now</a>
+                    {% else %}
+                        <a href="{{ url_for('login') }}" class="btn btn-rent">Login to Rent</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<dialog id="reviewsDialog" class="reviews-dialog">
+    <div class="dialog-header">
+        <h3>Customer Reviews</h3>
+        <button class="close-btn" onclick="closeReviews()">&times;</button>
+    </div>
+    <div class="dialog-content">
+        {% if reviews %}
+        <div class="reviews-grid">
+            {% for review in reviews %}
+            <div class="review-card">
+                <div class="review-header">
+                    <span class="review-user">{{ review.username }}</span>
+                    <div class="review-stars">
+                        {% for i in range(5) %}
+                        <span class="star {% if i < review.rating %}filled{% endif %}">★</span>
+                        {% endfor %}
+                    </div>
+                </div>
+                <p class="review-text">{{ review.comment }}</p>
+                <div class="review-footer">
+                    <span class="review-date">{{ review.review_date.strftime('%d %b %Y') }}</span>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="no-reviews">
+            <p>No reviews at the moment for this car</p>
+        </div>
+        {% endif %}
+    </div>
+</dialog>
+
+<script>
+function showReviews() {
+    const dialog = document.getElementById('reviewsDialog');
+    dialog.showModal();
+}
+
+function closeReviews() {
+    const dialog = document.getElementById('reviewsDialog');
+    dialog.close();
+}
+
+// Close dialog when clicking outside
+document.getElementById('reviewsDialog').addEventListener('click', (event) => {
+    if (event.target === dialog) {
+        dialog.close();
+    }
+});
+</script>
+{% endblock %}

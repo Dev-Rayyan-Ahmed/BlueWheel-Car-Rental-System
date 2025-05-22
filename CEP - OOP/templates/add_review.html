@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="review-container">
+    <div class="review-card">
+        <h2>Add Review</h2>
+        <form method="POST">
+            <div class="form-group">
+                <label>Rating (1-5 Stars)</label>
+                <div class="rating-stars">
+                    {% for i in range(5, 0, -1) %}
+                    <input type="radio" id="star{{i}}" name="rating" value="{{i}}" required>
+                    <label for="star{{i}}" class="star">★</label>
+                    {% endfor %}
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label>Your Review</label>
+                <textarea name="comment" required></textarea>
+            </div>
+            
+            <button type="submit" class="btn btn-submit">Submit Review</button>
+            <a href="{{ url_for('account') }}" class="btn btn-cancel">Cancel</a>
+        </form>
+    </div>
+</div>
+{% endblock %}

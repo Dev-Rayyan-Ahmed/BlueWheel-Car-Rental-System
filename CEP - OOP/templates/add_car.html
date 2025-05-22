@@ -1,0 +1,82 @@
+<!-- templates/add_car.html -->
+{% extends "base.html" %}
+
+{% block content %}
+<div class="form-container">
+    <h2>Add New Car</h2>
+    <form class="car-form" method="POST" action="{{ url_for('add_car') }}">
+        <div class="form-column">
+            <div class="form-group">
+                <label>Car ID</label>
+                <input type="text" name="car_id" required>
+            </div>
+            <div class="form-group">
+                <label>Name</label>
+                <input type="text" name="name" required>
+            </div>
+            <div class="form-group">
+                <label>Brand</label>
+                <input type="text" name="brand" required>
+            </div>
+
+            <div class="form-group">
+                <label>Price/Day (PKR)</label>
+                <input type="number" name="price_per_day" step="0.01" required>
+            </div>
+        </div>
+
+        <div class="form-column">
+            <div class="form-group">
+                <label>Seating Capacity</label>
+                <input type="number" name="seating_capacity" required>
+            </div>
+            <div class="form-group">
+                <label>Fuel Type</label>
+                <select name="fuel_type" required>
+                    <option value="Petrol">Petrol</option>
+                    <option value="Diesel">Diesel</option>
+                    <option value="Electric">Electric</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Engine CC</label>
+                <input type="number" name="CC" required>
+            </div>
+            <div class="form-group">
+                <label>Horsepower</label>
+                <input type="number" name="Hp" required>
+            </div>
+        </div>
+
+        <div class="form-column">
+            <div class="form-group">
+                <label>Top Speed (km/h)</label>
+                <input type="number" name="Top_Speed" required>
+            </div>
+            <div class="form-group">
+                <label>Dimensions (LxWxH)</label>
+                <input type="text" name="Dimension" placeholder="e.g., 4500x1800x1500" required>
+            </div>
+            <div class="form-group">
+                <label>Year</label>
+                <input type="number" name="Year" required>
+            </div>
+            <div class="form-group">
+                <label>Image URL</label>
+                <input type="url" name="Img_link" required>
+            </div>
+        </div>
+
+        <div class="form-checkboxes">
+            <label>
+                <input type="checkbox" name="Air_conditioned"> Air Conditioned
+            </label>
+            <label>
+                <input type="checkbox" name="is_available"> Currently Available
+            </label>
+        </div>
+
+        <button type="submit" class="btn btn-large">Add Car</button>
+    </form>
+</div>
+{% endblock %}

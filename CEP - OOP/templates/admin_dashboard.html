@@ -1,0 +1,59 @@
+<!-- templates/admin_dashboard.html -->
+{% extends "base.html" %}
+
+{% block content %}
+<div class="dashboard-container">
+    <h2>Admin Dashboard</h2>
+
+    <div class="dashboard-info">
+        <p>Welcome back, <strong>{{ current_user['name'] }}</strong>!</p>
+        <p>You have full administrative privileges.</p>
+    </div>
+
+    <!-- Stats Cards (for future use) -->
+    <div class="stats-grid">
+        <div class="stats-card">
+            <h4>Total Cars</h4>
+            <div class="stat"> {{total_cars - rental_count}} </div>
+            <p>In inventory</p>
+        </div>
+        <div class="stats-card">
+            <h4>Active Rentals</h4>
+            <div class="stat">{{ rental_count }}</div>
+            <p>Currently booked</p>
+        </div>
+    </div>
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="flash-message {{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+            {% endwith %}
+
+    <div class="dashboard-actions">
+        <h3>🚗 Vehicle Management</h3>
+        <ul>
+            <li><a href="{{ url_for('cars') }}">See Available Cars</a></li>
+            <li><a href="{{ url_for('add_car') }}">Add New Car Model</a></li>
+            <li><a href="{{ url_for('delete_car_page') }}">Delete Car Model</a></li>
+        </ul>
+    </div>
+
+    <div class="dashboard-actions">
+        <h3>👥 User Administration</h3>
+        <ul>
+            <li><a href="{{url_for('manage_customers')}}">Manage User Accounts</a></li>
+            <li><a href="{{ url_for('manage_bookings') }}">Manage Bookings</a></li>
+
+        </ul>
+    </div>
+
+    <div class="dashboard-actions">
+        <h3>⚙️ System Settings</h3>
+        <ul>
+            <li><a href="{{ url_for('logout') }}">Logout</a></li>
+        </ul>
+    </div>
+</div>
+{% endblock %}

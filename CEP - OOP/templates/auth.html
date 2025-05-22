@@ -1,0 +1,60 @@
+<!-- templates/auth.html -->
+{% extends "base.html" %}
+
+{% block content %}
+<div class="auth-container">
+    <div class="auth-tabs">
+        <button class="tab-btn {% if mode == 'login' %}active{% endif %}" 
+                onclick="window.location.href='{{ url_for('login') }}'">Login</button>
+        <button class="tab-btn {% if mode == 'signup' %}active{% endif %}" 
+                onclick="window.location.href='{{ url_for('signup') }}'">Sign Up</button>
+    </div>
+
+    <form class="auth-form" method="POST" action="{{ url_for(mode) }}">
+
+        <div class="form-group">
+            <input type="email" name="email" placeholder="Email" required>
+        </div>
+
+        {% if mode == 'signup' %}
+        <div class="form-group">
+            <input type="text" name="name" placeholder="Full Name" required>
+        </div>
+        
+        <div class="form-group">
+            <input type="text" name="address" placeholder="Address" required>
+        </div>
+
+        {% endif %}
+        
+        <div class="form-group">
+            <input type="text" name="license" placeholder="License Number" required>
+        </div>
+        <div class="form-group">
+            <input type="password" name="password" placeholder="Password" required>
+        </div>
+        
+        <button type="submit" class="btn-auth">{{ 'Sign Up' if mode == 'signup' else 'Login' }}</button>
+    </form>
+
+    {% if mode == 'login' %}
+    <div class="Admin-link">
+        <a href="{{ url_for('admin_login') }}" style="color: blue; text-decoration: underline;">
+            Admin Login?
+        </a>
+    </div>
+    {% endif %}
+
+    
+
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div class="flash-messages">
+                {% for message in messages %}
+                    <p class="flash">{{ message }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+</div>
+{% endblock %}

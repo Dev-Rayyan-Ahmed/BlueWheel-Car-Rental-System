@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}All Customers{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2 class="page-title">Current Customers</h2>
+
+    {% if customers %}
+    <div class="customer-list">
+        {% for customer in customers %}
+        <div class="customer-card">
+            <div class="info">
+                <h3>{{ customer.username }}</h3>
+                <p><strong>License No:</strong> {{ customer.license_no }}</p>
+                <p><strong>Email:</strong> {{ customer.email }}</p>
+                <p><strong>Address:</strong> {{ customer.address }}</p>
+                <p><strong>Balance:</strong> ${{ customer.balance }}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="no-customers">
+        <p>No customers found.</p>
+    </div>
+    {% endif %}
+</div>
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+{% if messages %}
+    {% for category, message in messages %}
+        <div class="flash-message {{ category }}">{{ message }}</div>
+    {% endfor %}
+{% endif %}
+{% endwith %}
+
+{% endblock %}

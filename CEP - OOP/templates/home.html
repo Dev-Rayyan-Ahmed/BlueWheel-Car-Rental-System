@@ -1,0 +1,30 @@
+<!-- templates/home.html -->
+{% extends "base.html" %}
+
+{% block content %}
+    <section class="hero">
+        <div>
+            <h1>Rent Premium Cars Today</h1>
+            <p>Choose from our wide selection of luxury and economy vehicles</p>
+            <a href="{{ url_for('cars') }}" class="btn">Browse Cars</a>
+        </div>
+    </section>
+
+    <!-- Featured Cars Section -->
+    <section class="featured-section">
+    <h2>Featured Cars</h2>
+    <div class="cars-grid">
+        {% for car in featured_cars %}
+        <div class="car-card">
+            <img src="{{ car.img_link }}" alt="{{ car.name }}">
+            <div class="card-content">
+                <h3>{{ car.name }}</h3>
+                <p>Rent: ${{ car.price_per_day }}/day</p>
+                <a href="{{ url_for('cars') }}" class="btn">Explore</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    </section>
+
+{% endblock %}

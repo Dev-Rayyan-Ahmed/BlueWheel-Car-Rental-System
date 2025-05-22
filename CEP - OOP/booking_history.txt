@@ -1,0 +1,58 @@
+BlueWheels Booking History
+==========================
+Customer Name: Irtiza Nisar
+Customer License: 123
+Car Booked: BMW M4
+Booking Date: 2025-05-12 
+Booked for: 3 Days
+Total Amount: $270
+================================>
+Customer Name: Umair Akbar
+Customer License: CM-12
+Car Booked: Land Cruiser LC 100
+Booking Date: 2025-05-17 
+Booked for: 5 Days
+Total Amount: $300
+================================>
+Customer Name: Irtiza Nisar
+Customer License: 123
+Car Booked: Audi R8
+Booking Date: 2025-05-19 
+Booked for: 2 Days
+Total Amount: $200
+================================>
+Customer Name: Umair Akbar
+Customer License: CM-12
+Car Booked: BMW M4
+Booking Date: 2025-05-21 
+Booked for: 3 Days
+Total Amount: $270
+================================>
+Customer Name: Rohan Shahid
+Customer License: AR-56
+Car Booked: Honda City
+Booking Date: 2025-05-21 
+Booked for: 6 Days
+Total Amount: $192
+================================>
+Customer Name: Faiz Alam
+Customer License: AR-12
+Car Booked: BMW M4
+Booking Date: 2025-05-22 
+Booked for: 3 Days
+Total Amount: $270
+================================>
+Customer Name: Irtiza Nisar
+Customer License: 123
+Car Booked: Toyota Hilux Revo
+Booking Date: 2025-05-22 
+Booked for: 6 Days
+Total Amount: $270
+================================>
+Customer Name: Asad Arif
+Customer License: CM-122
+Car Booked: Land Cruiser LC 100
+Booking Date: 2025-05-22 
+Booked for: 4 Days
+Total Amount: $240
+================================>

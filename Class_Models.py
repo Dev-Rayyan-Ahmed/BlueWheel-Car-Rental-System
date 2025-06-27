@@ -44,11 +44,11 @@ def get_db_connection():
     try:
         load_dotenv()
         conn = mysql.connector.connect(
-            host=os.getenv("DB_HOST", "localhost"),
-            user=os.getenv("DB_USER", "root"),
-            password=os.getenv("DB_PASSWORD", "cs138"),
-            database=os.getenv("DB_NAME", "bluewheelsdb"),
-            port=int(os.getenv("DB_PORT", 3306))
+            host=os.getenv("DB_HOST"),
+            user=os.getenv("DB_USER"),
+            password=os.getenv("DB_PASSWORD"),
+            database=os.getenv("DB_NAME"),
+            port=int(os.getenv("DB_PORT"))
         )
         
         if conn.is_connected():
